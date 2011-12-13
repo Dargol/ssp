@@ -1,0 +1,5 @@
+#!/bin/bash
+
+find ~ -name "core" -ctime +3  -type f | xargs -I file rm "$file" `
+
+echo "pliki zostaly poprawnie usuniete"

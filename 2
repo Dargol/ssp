@@ -1,0 +1,27 @@
+#!/bin/bash
+#dane do polaczenia ftp:
+srv="mdargacz.yoyo.pl"
+u="mdargacz.yoyo.pl"
+pass="1Jeden/"
+#koniec
+
+
+ls
+
+echo "wybierz plik/folder ktory przeniesc na serwer FTP"
+read f
+echo "oraz folder na serwerze  do ktorego przeniesc pliki"
+read fol
+
+
+ncftpput -R -v -u   $u -p $pass  $srv /$fol $f
+
+echo "$f uploaded to $srv/$fol"
+ftp -in <<EOF
+open $srv
+user $u $pass
+cd /$fol
+ls -R
+close
+bye
+EOF
